@@ -288,10 +288,15 @@ Completed:
 * Human vs Human
 * Human vs Random AI
 
-✓ RandomAI
-✓ RuleBasedAI
-✓ Difficulty Selection
-✓ Git + GitHub
+AI Progress:
+
+* RandomAI
+* RuleBasedAI
+
+Additional Features:
+
+* Difficulty Selection
+* Git + GitHub
 
 Current architecture:
 
@@ -300,6 +305,22 @@ board.py
 ai.py
 main.py
 ```
+
+Current capabilities:
+
+* Horizontal win detection
+* Vertical win detection
+* Diagonal win detection
+* Board cloning
+* Valid move generation
+* Rule-based move selection
+* Board evaluation function
+
+  * Horizontal scoring
+  * Vertical scoring
+  * Positive diagonal scoring
+  * Negative diagonal scoring
+  * Center column bonus
 
 Future refactor:
 
@@ -310,6 +331,8 @@ main.py
 agents/
     HumanPlayer.py
     RandomAI.py
+    RuleBasedAI.py
+    MinimaxAI.py
     ...
 ```
 
@@ -317,28 +340,47 @@ Refactor only when additional agents exist.
 
 ---
 
-# Current Next Task 
+# Current Next Task
 
-Implement board evaluation for Minimax.
+Implement Minimax AI.
 
 Questions to answer:
 
-1. What makes a Connect4 position good?
-2. How should positions be scored?
-3. How should the AI compare two non-winning boards?
+1. How does Minimax search future moves?
+2. How does recursion explore the game tree?
+3. How should maximizing and minimizing turns work?
+4. How should terminal states be handled?
+5. What search depth should be used?
 
 Goal:
-Create an evaluation function that returns a score for a board state.
+
+Create a Minimax AI that uses the board evaluation function to choose moves.
 
 Status:
-🔄 Next
 
-Status:
+Next
 
-🔄 IN PROGRESS
+---
 
-```
+# Roadmap
+
+Completed
+
+* RandomAI
+* RuleBasedAI
+* Board Evaluation Function
+
+Next
+
+* MinimaxAI
+
+Future
+
+* Alpha-Beta Pruning
+* Agent Refactor
+* Advanced Heuristics
+* MCTS / AlphaZero-style experiments
 
 Last Updated:
 June 2026
-```
+
