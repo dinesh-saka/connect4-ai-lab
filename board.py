@@ -81,6 +81,91 @@ class Board:
             self.check_vert_win(player)):
             return True
         return False
+    
+    def evaluate_window(self, window, piece):
+        score = 0
+
+        opp = 1 if piece == 2 else 2
+        count_ai = window.count(piece)
+        count_opp = window.count(opp)
+        count_empty = window.count(0)
+
+        if count_ai == 4:
+            score += 100000
+        if count_ai == 3 and count_empty == 1:
+            score += 100
+        if count_ai == 2 and count_empty == 2:
+            score += 10
+        
+        if count_opp == 4:
+            score -= 100000
+        if count_opp == 3 and count_empty == 1:
+            score -= 80
+        if count_opp == 2 and count_empty == 2:
+            score -= 5
+
+        return score
+    
+    def score_position(self, piece):
+        score = 0
+
+        # center bonus
+        center_col = self.cols // 2
+        center_count = 0
+        for row in range(self.rows):
+            if self.grid[row][center_col] == piece:
+                center_count += 1
+
+        score += center_count * 3
+
+        # horizontal evaluation
+        for row in range(self.rows):
+            for col in range(self.cols - 3):
+                window = [
+                    self.grid[row][col],
+                    self.grid[row][col+1],
+                    self.grid[row][col+2],
+                    self.grid[row][col+3]
+                ]
+                score += self.evaluate_window(window, piece)
+        
+        # vertical evaluation
+        for row in range(self.rows - 3):
+            for col in range(self.cols):
+                window = [
+                    self.grid[row][col],
+                    self.grid[row+1][col],
+                    self.grid[row+2][col],
+                    self.grid[row+3][col]
+                ]
+                score += self.evaluate_window(window, piece)
+        
+        # positive diagonal evaluation (\)
+        for row in range(self.rows - 3):
+            for col in range(self.cols - 3):
+                window = [
+                    self.grid[row][col],
+                    self.grid[row + 1][col + 1],
+                    self.grid[row + 2][col + 2],
+                    self.grid[row + 3][col + 3]
+                ]
+
+                score += self.evaluate_window(window, piece)
+        
+        # negative diagonal evaluation (/)
+        for row in range(3, self.rows):
+            for col in range(self.cols - 3):
+                window = [
+                    self.grid[row][col],
+                    self.grid[row - 1][col + 1],
+                    self.grid[row - 2][col + 2],
+                    self.grid[row - 3][col + 3]
+                ]
+
+                score += self.evaluate_window(window, piece)
+
+        return score
+
     def is_draw(self):
         if not self.get_valid_moves():
             return True

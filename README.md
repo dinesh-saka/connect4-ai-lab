@@ -288,6 +288,11 @@ Completed:
 * Human vs Human
 * Human vs Random AI
 
+✓ RandomAI
+✓ RuleBasedAI
+✓ Difficulty Selection
+✓ Git + GitHub
+
 Current architecture:
 
 ```text
@@ -312,20 +317,21 @@ Refactor only when additional agents exist.
 
 ---
 
-# Current Next Task
+# Current Next Task 
 
-Task:
-Implement RuleBasedAI.
+Implement board evaluation for Minimax.
 
-Requirements:
+Questions to answer:
 
-1. If AI can win immediately, take winning move.
-2. If opponent can win next move, block it.
-3. Otherwise choose random move.
+1. What makes a Connect4 position good?
+2. How should positions be scored?
+3. How should the AI compare two non-winning boards?
 
-Technical requirement:
+Goal:
+Create an evaluation function that returns a score for a board state.
 
-Learn how to create a temporary copy of the board and simulate moves without modifying the real game state.
+Status:
+🔄 Next
 
 Status:
 

@@ -8,6 +8,13 @@ random_ai = RandomAI()
 rule_ai = RuleBasedAI(2)
 curr_player = 1
 
+# #Test
+
+# board.drop_piece(0, 2)
+# board.drop_piece(0, 2)
+# board.drop_piece(0, 2)
+
+# print(board.score_position(2))
 
 game_mode = int(input(
     "Choose game mode:- \n"
@@ -15,7 +22,6 @@ game_mode = int(input(
     "[2] Human vs Random AI (lvl 1)\n"
     "[3] Human vs Rule Based AI (lvl 2)\n"
 ))
-
 if game_mode == 2:
     ai = random_ai
 elif game_mode == 3:
